@@ -12,8 +12,7 @@ const getAllTours=(req,res)=>{
     })
 }
 const getTours=(req,res)=>{
-    console.log("EK ek karke denge tours");
-    console.log();
+    console.log("Galat route");
     res.status(200).json({
         status:'success'
     })

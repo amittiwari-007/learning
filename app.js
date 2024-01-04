@@ -18,7 +18,7 @@ app.use((req,res,next)=>{
 
 app.use('/',tourRouter);
 app.use('/users',userRouter);
-// app.use('/login',loginRouter);
+app.use('/login',loginRouter);
 
 
 module.exports = app;
