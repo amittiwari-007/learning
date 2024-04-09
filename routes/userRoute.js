@@ -1,14 +1,20 @@
-const express  = require('express');
-const userRouter = express.Router();
-const fs = require('fs');
-const users = JSON.parse(fs.readFileSync(`${__dirname}/../dev-data/data/users.json`))
-const getAllUsers=(req,res)=>{
-    res.status(200).json({
-        status:'success',
-        result:users.length,
-        users
-    })
-};
-userRouter.route('/').get(getAllUsers);
+const express = require('express');
+const userController = require('./../controllers/userControllers');
+const authController = require('./../controllers/authController');
 
-module.exports = userRouter;
+const router = express.Router();
+
+router.post('signup',authController.signup);
+
+router
+  .route('/')
+  .get(userController.getAllUsers)
+  .post(userController.createUser);
+
+router
+  .route('/:id')
+  .get(userController.getUser)
+  .patch(userController.updateUser)
+  .delete(userController.deleteUser);
+
+module.exports = router;
